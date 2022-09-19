@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace HR.LeaveManagement.Application.DTOs.LeaveType.Validators
 {
-    public class CreateLeaveTypeDtoValidator : AbstractValidator<CreateLeaveTypeDto>
+    public class UpdateLeaveTypeDtoValidator : AbstractValidator<UpdateLeaveTypeDto>
     {
         private readonly ILeaveTypeRepository _leaveTypeRepository;
 
-        public CreateLeaveTypeDtoValidator(ILeaveTypeRepository leaveTypeRepository)
+        public UpdateLeaveTypeDtoValidator(ILeaveTypeRepository leaveTypeRepository)
         {
             _leaveTypeRepository = leaveTypeRepository;
             Include(new ILeaveTypeDtoValidator(_leaveTypeRepository));
+
+            RuleFor(l => l.Id).NotNull().WithMessage("{PropertyName} must be present.");
         }
     }
 }

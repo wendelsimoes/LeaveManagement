@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace HR.LeaveManagement.Application.DTOs.LeaveAllocation.Validators
 {
-    public class CreateLeaveAllocationDtoValidator : AbstractValidator<CreateLeaveAllocationDto>
+    public class LeaveAllocationDtoValidator : AbstractValidator<LeaveAllocationDto>
     {
         private readonly ILeaveAllocationRepository _leaveAllocationRepository;
 
-        public CreateLeaveAllocationDtoValidator(ILeaveAllocationRepository leaveAllocationRepository)
+        public LeaveAllocationDtoValidator(ILeaveAllocationRepository leaveAllocationRepository)
         {
             _leaveAllocationRepository = leaveAllocationRepository;
 
@@ -34,9 +34,9 @@ namespace HR.LeaveManagement.Application.DTOs.LeaveAllocation.Validators
                 .MustAsync(async (id, token) =>
                 {
                     var leaveTypeExists = await _leaveAllocationRepository.Exists(id);
-                    return !leaveTypeExists;
+                    return leaveTypeExists;
                 })
-                .WithMessage("{PropertyName} already exists.");
+                .WithMessage("{PropertyName} does not exist.");
         }
     }
 }
