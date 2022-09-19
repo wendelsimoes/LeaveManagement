@@ -24,7 +24,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
 
         public async Task<int> Handle(CreateLeaveRequestCommand request, CancellationToken cancellationToken)
         {
-            var leaveRequest = _mapper.Map<LeaveRequest>(request.LeaveRequestDto);
+            var leaveRequest = _mapper.Map<LeaveRequest>(request.CreateLeaveRequestDto);
 
             leaveRequest = await _leaveRequestRepository.AddAsync(leaveRequest);
 
