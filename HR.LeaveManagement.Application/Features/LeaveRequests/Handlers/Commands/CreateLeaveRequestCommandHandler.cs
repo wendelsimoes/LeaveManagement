@@ -40,6 +40,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
                 response.Success = false;
                 response.Message = "Creation Failed";
                 response.Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                return response;
             }
 
             var leaveRequest = _mapper.Map<LeaveRequest>(request.CreateLeaveRequestDto);
